@@ -1,0 +1,35 @@
+.heading {
+    justify-content: center;
+}
+
+
+
+.row {
+    height: 100px;
+    align-items: flex-end;
+}
+
+.col {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
+.button,
+.navbar {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.card {
+    height: 300%;
+    margin: 4%;
+    background-color: azure;
+    align-items: center;
+}
+
+.card:hover {
+    /* transform: scale(1.2); */
+    background-color:lightcyan;
+    /* color: white; */
+}

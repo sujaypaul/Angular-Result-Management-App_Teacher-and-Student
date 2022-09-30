@@ -1,0 +1,119 @@
+<nav class="navbar navbar-light bg-primary bg-gradient">
+    <div class="container justify-content-center">
+        <h2 style="color: aliceblue;">Result Management System</h2>
+    </div>
+    <div class="d-flex px-2">
+        <button (click)="logout()" class="btn btn-light py-0 px-2">Logout</button>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h2><b>Student Records : </b> {{length}}</h2>
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" (click)="onAdd()" class="btn btn-info add-new button" data-bs-toggle="modal"
+                        data-bs-target="#RecordForm"><i class="fa fa-plus"></i>Add New </button>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered ">
+            <thead class="bg-gradient">
+                <tr>
+                    <th class="col-sm-1">Roll No.</th>
+                    <th>Student Name</th>
+                    <th>Date of Birth</th>
+                    <th>Score</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of resultsData" id="record">
+                    <td>{{row.RollNo}}</td>
+                    <td>{{row.Name}}</td>
+                    <td>{{row.DOB.split("-").reverse().join("-")}}</td>
+                    <td>{{row.Score}}</td>
+                    <td>
+                        <button type="button" (click)="onEdit(row)" class="edit" id="EditButton" data-bs-toggle="modal"
+                            data-bs-target="#RecordForm"><i class="material-icons"></i></button>
+                        <button type="button" (click)="deleteResult(row)" class="delete"><i
+                                class="material-icons"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="RecordForm" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add Student Record</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+
+                        <form [formGroup]="formValue">
+                            <div>
+                                <label for="InputRollNo" class="form-label">Roll No.</label>
+                                <input formControlName="RollNo" type="number" class="form-control" id="InputRollNo">
+                                <span class="text-danger" 
+                                *ngIf="submitted && formControl.RollNo.errors?.required">
+                                    Roll No. is required
+                                </span>
+                            </div>
+                            <div>
+                                <label for="InputName" class="form-label">Name</label>
+                                <input formControlName="Name" type="text" class="form-control" id="InputName">
+                                <span class="text-danger" 
+                                *ngIf="submitted && formControl.Name.errors?.required">
+                                    Name is required
+                                </span>
+                            </div>
+                            <div>
+                                <label for="InputDOB" class="form-label">Date of Birth</label>
+                                <input formControlName="DOB" type="date" class="form-control" id="InputDOB">
+                                <span class="text-danger" 
+                                *ngIf="submitted && formControl.DOB.errors?.required">
+                                    DOB is required
+                                </span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="InputScore" class="form-label">Score</label>
+                                <input formControlName="Score" type="number" class="form-control" id="InputScore">
+                                <span class="text-danger" 
+                                *ngIf="submitted && formControl.Score.errors?.required">
+                                    Score is required
+                                </span>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button *ngIf="showAdd" type="submit" (click)="postResult()"
+                                class="btn btn-primary">Add</button>
+                            <button *ngIf="showEdit" type="submit" (click)="editResult()"
+                                class="btn btn-primary">Update</button>
+                            <button type="button" id="canceladd" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "role": "student",
+      "email": "student@gmail.com",
+      "password": "asdf"
+    },
+    {
+      "role": "teacher",
+      "email": "teacher@gmail.com",
+      "password": "asdf"
+    }
+  ],
+  "results": [
+    {
+      "id": 2,
+      "RollNo": 2,
+      "Name": "John",
+      "DOB": "2000-11-11",
+      "Score": 77
+    },
+    {
+      "id": 3,
+      "RollNo": 3,
+      "Name": "William",
+      "DOB": "2000-11-22",
+      "Score": 99
+    },
+    {
+      "id": 4,
+      "RollNo": 4,
+      "Name": "Nick",
+      "DOB": "2000-11-22",
+      "Score": 83
+    },
+    {
+      "id": 5,
+      "RollNo": 5,
+      "Name": "Tony",
+      "DOB": "2000-11-21",
+      "Score": 88
+    }
+  ]
+}

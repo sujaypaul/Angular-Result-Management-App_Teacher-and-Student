@@ -1,0 +1,64 @@
+<nav class="navbar navbar-light bg-primary bg-gradient">
+  <div class="container justify-content-center">
+    <h2 style="color: aliceblue;">Result Management System</h2>
+  </div>
+  <div class="d-flex px-2">
+    <button (click)="logout()" class="btn btn-light py-0 px-2">Logout</button>
+  </div>
+</nav>
+<div class="label">
+  <h2>Find Result :</h2>
+</div>
+<div class="search-page">
+
+  <div class="form">
+
+    <form [formGroup]="searchForm" (ngSubmit)="search()">
+      <label>Roll No</label>
+      <input formControlName="RollNo" type="number" class="form-control" placeholder="RollNo" />
+
+      <label>Date of Birth</label>
+      <input formControlName="DOB" type="date" class="form-control" placeholder="DOB" />
+      
+      <button type="submit" [disabled]="!searchForm.valid" data-bs-toggle="modal" data-bs-target="#Result">Search</button>
+
+    </form>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="Result" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Result</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container row" *ngIf="found">
+          <div class="col">
+            <div><b> Roll No :</b></div>
+            <div><b>Name :</b></div>
+            <div><b>Date of Birth :</b></div>
+            <div><b>Score :</b></div>
+          </div>
+          <div class="col">
+            <div>{{RollNo}}</div>
+            <div>{{Name}}</div>
+            <div>{{DOB}}</div>
+            <div>{{Score}}</div>
+          </div>
+          <div class="col">
+            <div class="badge">{{Score}}</div>
+          </div>
+        </div>
+        <div *ngIf="notFound">Not found</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
