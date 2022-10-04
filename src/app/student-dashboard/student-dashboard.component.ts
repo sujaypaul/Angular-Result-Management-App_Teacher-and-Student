@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../service/api.service';
 import { Router } from '@angular/router';
+import { ResultModel } from '../teacher-dashboard/result.model';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -15,17 +16,14 @@ export class StudentDashboardComponent implements OnInit {
   found !: boolean;
   notFound !: boolean;
 
-  RollNo !: number;
-  Name !: string;
-  DOB !: string;
-  Score !: number;
+  resultObj: ResultModel = new ResultModel();
 
   // example !: any;
 
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient,
     private api: ApiService,
-    private router : Router
+    private router: Router
   ) { }
 
 
@@ -36,7 +34,7 @@ export class StudentDashboardComponent implements OnInit {
     })
   }
 
-  search(){
+  search() {
     if (this.searchForm.valid) {
       this.getResult();
     }
@@ -59,10 +57,7 @@ export class StudentDashboardComponent implements OnInit {
 
           this.searchForm.reset();
 
-          this.RollNo = result.RollNo;
-          this.Name = result.Name;
-          this.DOB = result.DOB.split("-").reverse().join("-");
-          this.Score = result.Score;
+          this.resultObj = result;
 
         } else {
           this.found = false;
@@ -71,10 +66,16 @@ export class StudentDashboardComponent implements OnInit {
       })
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('username');
     localStorage.removeItem('role');
     this.router.navigate([''])
+  }
+
+  redirect() {
+    let ref = document.getElementById('close')
+    ref?.click();
+    this.router.navigate(['ResultView'], { state: { RESULT: this.resultObj } });
   }
 
 }

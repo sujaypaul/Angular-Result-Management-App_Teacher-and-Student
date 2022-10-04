@@ -34,7 +34,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Result</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="container row" *ngIf="found">
@@ -45,18 +45,19 @@
             <div><b>Score :</b></div>
           </div>
           <div class="col">
-            <div>{{RollNo}}</div>
-            <div>{{Name}}</div>
-            <div>{{DOB}}</div>
-            <div>{{Score}}</div>
+            <div>{{resultObj.RollNo}}</div>
+            <div>{{resultObj.Name}}</div>
+            <div>{{resultObj.DOB.split("-").reverse().join("-")}}</div>
+            <div>{{resultObj.Score}}</div>
           </div>
           <div class="col">
-            <div class="badge">{{Score}}</div>
+            <div class="badge">{{resultObj.Score}}</div>
           </div>
         </div>
-        <div *ngIf="notFound">Not found</div>
+        <div *ngIf="notFound" style="color: red; text-align: center;">No result found</div>
       </div>
       <div class="modal-footer">
+        <a *ngIf="found" class="link-secondary" (click)="redirect()">View result in new page</a>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>

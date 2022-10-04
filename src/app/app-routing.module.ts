@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FullViewComponent } from './full-view/full-view.component';
 import { LoginStudentComponent } from './login-student/login-student.component';
 import { LoginTeacherComponent } from './login-teacher/login-teacher.component';
 import { LoginComponent } from './login/login.component';
@@ -25,6 +26,12 @@ const routes: Routes = [
     path: 'TeacherDashboard',
     component: TeacherDashboardComponent,
     canActivate: [TeacherAuthGuard]
+  },
+
+  {
+    path: 'ResultView',
+    component: FullViewComponent,
+    canActivate: [AuthGuard]
   },
 
   { path: '**', component: PageNotFoundComponent }

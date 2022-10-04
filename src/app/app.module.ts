@@ -12,6 +12,7 @@ import { LoginStudentComponent } from './login-student/login-student.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './service/auth.guard';
+import { FullViewComponent } from './full-view/full-view.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthGuard } from './service/auth.guard';
     LoginComponent,
     LoginTeacherComponent,
     LoginStudentComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FullViewComponent
   ],
   imports: [
     BrowserModule,
